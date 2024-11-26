@@ -48,7 +48,7 @@ begin
                 E4 <= '0';
                 E5 <= '0';
                 if BTN1 = '0' then
-                PE <= Waits;
+                PE <= Play;
                 else
                     PE <= setup;
                 end if;
