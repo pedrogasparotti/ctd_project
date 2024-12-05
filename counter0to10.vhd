@@ -11,20 +11,24 @@ port(
 end counter0to10;
 
 architecture bhv of counter0to10 is
-    signal count: std_logic_vector(3 downto 0) := "0000";
+    signal count: std_logic_vector(3 downto 0) := "0000"; 
+
 begin
-    P1: process(CLOCK, Reset, Enable)
+    P1: process(clock, reset)
     begin
-        if Reset = '1' then
+        if reset = '1' then
             count <= "0000";
-
-        elsif CLOCK'event and CLOCK = '1' and Enable = '1' then
-            count <= count + 1;
-            Round <= count;
-
-            if count = "1010" then
-                end_round <= '1';
+            end_round <= '0'; 
+            elsif clock'event and clock = '1' and enable = '1' then
+            if count = "1001" then
+                count <= "0000"; 
+                end_round <= '1'; 
+            else
+                count <= count + 1;
+                end_round <= '0'; 
             end if;
         end if;
     end process;
+
+    Round <= count; 
 end bhv;

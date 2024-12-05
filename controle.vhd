@@ -27,39 +27,36 @@ begin
     begin
         case EA is
             when start =>
-                R1 <= '1'; 
-                R2 <= '1';
-                E1 <= '0';
-                E2 <= '0';
-                E3 <= '0';
-                E4 <= '0';
-                E5 <= '0';
+				R1 <= '1';
+				R2 <= '1';
+				E1 <= '0';
+				E2 <= '0';
+				E3 <= '0';
+				E4 <= '0';
+				E5 <= '0';
+				
                 if BTN1 = '0' then
                     PE <= Setup;
                 else
                     PE <= start;
                 end if;
             when Setup =>
-                R1 <= '0'; 
-                R2 <= '0';
-                E1 <= '1';
-                E2 <= '0';
-                E3 <= '0';
-                E4 <= '0';
-                E5 <= '0';
+				R1 <= '0';
+				R2 <= '0';
+				E1 <= '1';
+				
                 if BTN1 = '0' then
-                PE <= Waits;
+                PE <= Play;
                 else
                     PE <= setup;
                 end if;
             when Play =>
-                R1 <= '0'; 
-                R2 <= '0';
-                E1 <= '0';
-                E2 <= '1';
-                E3 <= '0';
-                E4 <= '0';
-                E5 <= '0';
+				R1 <= '0';
+				R2 <= '0';
+				E1 <= '0';
+				E2 <= '1';
+				E4 <= '0';
+				
                 if end_time = '1' then
                 PE <= Result;
                 elsif (end_time = '0') and (BTN1 = '0') then
@@ -68,13 +65,9 @@ begin
                     PE <= Play;
                 end if;
             when Count_Round =>
-                R1 <= '0'; 
-                R2 <= '0';
-                E1 <= '0';
-                E2 <= '0';
-                E3 <= '1';
-                E4 <= '0';
-                E5 <= '0';
+				E3 <= '1';
+				PE <= Check;
+
                 PE <= Check;
             when Check =>
                 R1 <= '0'; 
@@ -84,6 +77,7 @@ begin
                 E3 <= '0';
                 E4 <= '1';
                 E5 <= '0';
+                
                 if (end_round or sw_erro or end_game) = '1' then
                 
                 PE <= Result;
@@ -91,13 +85,10 @@ begin
                     PE <= Waits;
                 end if;
             when Waits =>
-                R1 <= '1'; 
-                R2 <= '0';
-                E1 <= '0';
-                E2 <= '0';
-                E3 <= '0';
-                E4 <= '0';
-                E5 <= '0';
+				E2 <= '0';
+				R1 <= '1';
+				E4 <= '1';
+				
                 if BTN1 = '0' then
                
                 PE <= Play;
@@ -105,13 +96,12 @@ begin
                     PE <= Waits;
                 end if;
             when Result =>
-                R1 <= '0';
-                R2 <= '0';
+				E5 <= '1';
+				E4 <= '1';
+				E2 <= '0';
+				E3 <= '0';
                 E1 <= '0';
-                E2 <= '0';
-                E3 <= '0';
-                E4 <= '0';
-                E5 <= '1';
+				
                 if BTN1 = '0' then
                 PE <= start;
                 else 
