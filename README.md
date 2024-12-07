@@ -68,4 +68,9 @@ At any time, the user can stop the game by pressing the reset button (KEY0), res
 Button Synchronization:
 To prevent timing issues caused by the duration of a human pressing a KEY lasting many clock cycles, a Button Press Synchronizer (ButtonSync) converts KEY presses into pulses lasting one clock cycle.
 
+Sketch of the datapath file:
+
+![WhatsApp Image 2024-12-07 at 2 48 00 AM](https://github.com/user-attachments/assets/e6700f7d-5e86-4cbf-b740-0a7a2f374159)
+
+
 To play the game, you can donwload the repo and upload to https://fpgaemu.sites.ufsc.br/emulation - you can also change the ROM memory with new combinations if you want to.
